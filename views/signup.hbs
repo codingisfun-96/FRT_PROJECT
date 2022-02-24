@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/images/cloudnest.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    
+    
+    <title>Cloudnest</title>
+</head>
+<body>
+    <!---loader--->
+    <div id="loader" class="center"></div>
+     <!---top banner-->
+    <div class="top-banner">
+        <h1>Cloudnest</h1>
+        <p>A safe place to store all your credentials !</p>
+    </div>
+
+    <!--form-->
+    <form id="signup" action="/auth/signup" method="POST" enctype="multipart/form-data">
+    <div class="signup-form" >
+    <h1 style="color:rgb(19, 193, 236); text-align: center; margin-bottom:30px">Sign Up</h1>
+    <div class="profile-pic">
+        <img  id="image" src="/images/no_pic.png" class="avatar">
+        <p style="margin-top: 10px;">Upload you profile picture here:</p>
+        <input id="file" name="propic" type="file" class="custom-file" value="{{form.avatar}}" onchange="validateImage()">
+    </div>
+    <div class="line-box">
+        <i class="las la-tag"></i>
+         <input name="fname" id="first-name" type="name" placeholder="First name" value="{{form.firstname}}">
+    </div>
+    <div class="line-box">
+        <i class="las la-tag"></i>
+        <input name="lname" id="last-name" type="name" placeholder="Last name" value="{{form.lastname}}">
+    </div>     
+    {{!-- <div class="input-box">
+    <input name="uname" id="username" type="email" placeholder="Email" >
+    </div> --}}
+
+    <div class="email-box">
+        <i class="las la-envelope"></i>
+        <input class="mail" name="email" id="e-mail" type="email" placeholder="Enter your Email address" value="{{form.email}}" onkeyup="ValidateEmail()">
+       <span id="text"></span>
+    </div>  
+    <div class="input-box">
+       <div class="pw-meter">
+             <div class="form-element">
+                 <i class="las la-key"></i>
+                <input name="pass" type="password" id="password" placeholder="Enter your Password" value="{{form.password}}">
+                <div class="pw-display-toggle-btn">
+                    <i class="fa fa-eye"></i>
+                    <i class="fa fa-eye-slash"></i>
+                </div>
+                <div class="pw-strength">
+                    <span></span>
+                    <span></span>
+                </div></div></div>
+    </div>
+    <div class="input-box">
+        <i class="las la-key"></i>
+        <input name="pass2" id="confirm_pass" type="password" placeholder="Confirm your Password" value="{{form.password2}}">
+    </div>
+    <button type="submit" class="login-btn">Sign Up</button>
+    <div class="wrapper">
+        Already Signed up? <a href="/login">Login</a></div>
+        {{!-- <div id="alert" class="alert" role="alert"></div>   --}}
+        {{#if error}}
+        <h4 id="alert" class="alertmsg-error" role="alert">{{message}}<a href="#" onclick="modal_close()"><span class="la la-close" style="float: right;"></span></a></h4>
+        {{else}}{{#if success}}
+            <h4 id="alert" class="alertmsg-success" role="alert">{{message}}<a href="#" onclick="modal_close()"><span class="la la-close" style="float: right;"></span></a></h4>
+        {{/if}}{{/if}}
+    </div>
+    </form>    
+</body>
+    
+    {{!-- <footer class="footer" id="footer-sg">
+        <h3 >Project leads :</h3>
+        
+        <ul>
+            <li>Sabyasachi Biswas</li>
+            <li>Saikat Maji</li> 
+            <li><small class="sg">© Cloudnest 2021. All rights reserved</small></li>
+        </ul>
+    </footer> --}}
+    <script src="/js/function.js"></script>
+    <script>
+        function modal_close() {
+            let modal = document.getElementById("alert");
+            modal.style.display = "none";
+        }
+    </script>
+</html>

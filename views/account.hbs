@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Cloudnest</title>
+    <link rel="shortcut icon" href="/images/cloudnest.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+<body onload="load_data()">
+    
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span>Cloudnest</span></h2>
+        </div>
+        
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="/password-page" ><span class="las la-key"></span> <span>Passwords</span></a>
+                </li>
+                <li>
+                    <a href="/notes-page"><span class="las la-clipboard"></span> <span>Notes</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+                Account
+            </h2>
+            {{!-- delete popup --}}
+            {{!-- <div class="confirm-delete" id="confirm_delete">
+            <div class="confirm-delete-window">
+            <h4>Are you sure?</h4>
+            <div>
+                <button onclick="confirm_delete_yes()">Yes</button>
+                <button onclick="confirm_delete_no()">No</button>
+            </div>
+            </div>
+            </div> --}}
+
+            {{!-- <h4 id="alert" class="alertmsg-error1" role="alert"></h4>
+            <h4 id="alert_success" class="alertmsg-success" role="alert"></h4>
+            <h4 id="alert_search" class="alertmsg-search" role="alert"></h4> --}}
+            
+            <div class="user-wrapper">                 
+                {{!-- href="/login" --}}
+                <h3><a href="/login" onclick="logout()"><i class="las la-power-off"></i>Log Out</a></h3>
+                
+                
+
+            </div>
+        </header>
+        
+        <main>
+            
+            <div class="account-container">
+                <img src="#" class="profile_picture" id="profile_picture">
+                <div class="account-details">
+                <div class="name-details">
+                    <h1 id="user_name"></h1>
+                    {{!-- <h1><a href="#"><i class="las la-edit"></i></a></h1> --}}
+                </div>
+                    <label id="user_email">email@address.com</label>
+                </div>
+                
+            </div>
+            <div class="account-container">
+                <div class="account-details">
+                    <h1>Passwords and Notes</h1>
+                    <div style="display: flex;">
+                        <div style="display: block;">
+                            <h4 style="margin-right: 5px;">Total passwords</h4>
+                            <h4 style="margin-right: 5px;">Total websites</h4>
+                            <h4 style="margin-right: 5px;">Total notes</h4>
+                            <h4 style="margin-right: 5px;">Total bytes of notes</h4>
+                    
+                        </div>
+                        <div style="display: block;">
+                            <label style="margin-left: 5px;" id="total_passwords">left right</label><br>
+                            <label style="margin-left: 5px;" id="total_websites">left right</label><br>
+                            <label style="margin-left: 5px;" id="total_notes">left right</label><br>
+                            <label style="margin-left: 5px;" id="total_bytes">left right</label><br>
+                        </div>
+                    
+                    </div>
+
+                </div>
+                
+            </div>
+            
+            
+        </main>
+    </div>
+    <script>
+        async function logout(){
+            const options = {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'GET'
+
+            };
+        
+            const response = await fetch('/logout',options);
+            const json_data = response.json();
+            if(json_data.state)
+            {
+                console.log("Logged out");
+            }
+        }
+        async function load_data(){
+            const user_name = document.getElementById("user_name");
+            const picture = document.getElementById("profile_picture");
+            const user_email = document.getElementById("user_email");
+            const total_passwords = document.getElementById("total_passwords");
+            const total_notes = document.getElementById("total_notes");
+            const total_websites = document.getElementById("total_websites");
+            const total_bytes = document.getElementById("total_bytes");
+            
+            
+
+            var data_html ="";
+            var notes_count = 0;
+            var password_count = 0;
+            var length = 0;
+
+            const options = {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'GET'
+
+            };
+        
+            const response = await fetch('/account/load-account',options);
+            const json_data = await response.json();
+            console.log(json_data);
+            user_name.innerHTML=json_data.user.firstname+" "+json_data.user.lastname;
+            user_email.innerHTML=json_data.user.email;
+            picture.src=`/uploads/${json_data.user.image}`;
+
+            var notes_data = json_data.notes;
+            var password_data = json_data.password;
+
+            for(var i=0;i<notes_data.length;i++)
+            {
+                notes_count+=1;
+                length+=notes_data[i].body.length;
+            }
+            var counts = {};
+            
+            for(var i=0;i<password_data.length;i++)
+            {
+                password_count+=1;
+                counts[password_data[i].website] = 1 + (counts[password_data[i].website] || 0);
+                {{!-- length+=notes_data[i].body.length; --}}
+            }   
+            var website_count = Object.keys(counts).length;
+
+            total_notes.innerHTML=notes_count;
+            total_passwords.innerHTML=password_count;
+            total_websites.innerHTML=website_count;
+            total_bytes.innerHTML=length;
+
+            {{!-- var notes_data = json_data.notes; --}}
+
+        }
+    </script>
+</body>
+</html>

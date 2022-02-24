@@ -1,0 +1,29 @@
+{
+  "name": "cloudnest",
+  "version": "1.0.0",
+  "description": "This is a password-storage application",
+  "main": "index.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.6.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "hbs": "^4.1.2",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "pidcrypt": "0.0.32"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "cloud",
+    "password",
+    "notes"
+  ],
+  "author": "Saikat , Sabyasachi",
+  "license": "MIT"
+}

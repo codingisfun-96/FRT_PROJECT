@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/images/cloudnest.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+<title>Cloudnest</title>
+</head>
+<body>
+    <div id="loader" class="center"></div>
+    <!---top brand-->
+    <div class="top-brand">
+            <h1><img src="/images/cloudnest.png" height="50px" width="60px">Cloudnest</h1>
+            <p>A safe place to store all your credentials !</p>
+    </div>
+    <div class="admin"><img src="/images/admin.png" height="100px" width="100px"></div>
+    <!---form--->
+    <form id="login" action="/auth/login" method="POST">
+    <div class="login-form">
+    <h2 style="color:rgb(19, 193, 236);">Welcome! Login here</h2>
+    {{!-- <div id="alert" class="alert" role="alert"></div> --}}
+   {{#if error}}
+        <h4 id="alert" class="alertmsg-error-log" role="alert">{{message}}<a href="#" onclick="modal_close()"><span class="la la-close" style="float: right;"></span></a></h4>
+    {{else}}{{#if success}}
+        <h4 id="alert" class="alertmsg-success-log" role="alert">{{message}}<a href="#" onclick="modal_close()"><span class="la la-close" style="float: right;"></span></a></h4>
+    {{/if}}{{/if}}
+    <div class="input-box">
+        <i class="las la-user-circle"></i>
+        <input name="email" id="usr" type="email" placeholder="Username / Email Id" value="{{form.email}}">
+    </div>
+    <div class="input-box">
+        <i class="las la-key"></i>
+        <input name="pass" type="password" placeholder="Password" id="pass" onclick="myFunction()" value="{{form.password}}">
+        <span class="eye" id="eye" onclick="eye()">
+            <i id="hide2" class="fa fa-eye"></i>
+            <i id="hide1" class="fa fa-eye-slash"></i>
+        </span>
+    </div>
+        <button type="submit" class="login-btn">Login</button>
+    <div class="wrapper">
+        
+        {{!-- <a href="/forgot-pass">Forgot password? </a> --}}
+    </div><br>
+    <div class="wrapper">
+        Don't have an account? <a href="/signup">Sign up</a><br><br>
+        <a class="back" href="/">Return to Homepage</a>
+        </div>
+    </div>
+    <div class="wrapper">
+        
+        </div>
+    </div>
+    </form>
+    <script src="/js/function.js"></script>
+    <script>
+        function modal_close() {
+            let modal = document.getElementById("alert");
+            modal.style.display = "none";
+        }
+    </script>
+   
+</body>
+</html>

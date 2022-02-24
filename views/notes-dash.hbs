@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Cloudnest</title>
+    <link rel="shortcut icon" href="/images/cloudnest.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Nova+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+<body onload="load_data()">
+    
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span>Cloudnest</span></h2>
+        </div>
+        
+        <div class="sidebar-menu">
+            <ul>
+                <li>
+                    <a href="/password-page"  ><span class="las la-key"></span> <span>Passwords</span></a>
+                </li>
+                <li>
+                    <a href="/notes-page" class="active"><span class="las la-clipboard"></span> <span>Notes</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+                Notes
+            </h2>
+            {{!-- delete popup --}}
+            <div class="confirm-delete" id="confirm_delete">
+            <div class="confirm-delete-window">
+            <h4>Are you sure?</h4>
+            <div>
+                <button onclick="confirm_delete_yes()">Yes</button>
+                <button onclick="confirm_delete_no()">No</button>
+            </div>
+            </div>
+            </div>
+
+            <h4 id="alert" class="alertmsg-error1" role="alert"></h4>
+            <h4 id="alert_success" class="alertmsg-success" role="alert"></h4>
+            <h4 id="alert_search" class="alertmsg-search" role="alert"></h4>
+            <div class="search-wrapper">
+                <span class="las la-search"></span>
+                <input type="input" placeholder="Search here" id="myInput" onkeyup="search_function()" />
+            </div>
+            
+            <div class="user-wrapper">                 
+                <img src="#" alt="Profile picture" width="50px" height="50px" id="profile_picture">
+                <div class="menu-bar">
+                    <ul>
+                        <li>
+                            <i class="las la-chevron-down"></i>
+                        <div class="sub-menu">
+                            <ul>
+                                <li></i><a href="/account"><i class="las la-user"></i>Account</a></li>
+                                <li><a href="/login" onclick="logout()"><i class="las la-power-off"></i>Log Out</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                </div>
+                <h4 style="margin-right: 5px;">Hi,</h4>
+                <h4 id="user_name"></h4>
+                
+
+            </div>
+        </header>
+        
+        <main>
+            
+            <div class="cards">
+                <div class="card-single">
+                    <div>
+                        <h1 id="notes_count"></h1>
+                        <span>Notes</span>
+                    </div>
+                    <div>
+                        <span class="las la-clipboard-list"></span>
+                    </div>
+                </div>
+                
+                <div class="card-single">
+                    <div>
+                        <h1 id="notes_byte"></h1>
+                        <span>Bytes of data</span>
+                    </div>
+                    <div>
+                        <span class="las la-sd-card"></span>
+                    </div>
+                </div>
+                
+                
+                
+                <div class="card-single">
+                    <div>
+                        <h1>Hello</h1>
+                        <span>Have a great day</span>
+                    </div>
+                    <div>
+                        <span class="lar la-smile"></span>
+                    </div>
+                </div>
+                <div class="card-single">
+                    <div>
+                        <h1>Cloudnest 2.0</h1>
+                        <span>Coming soon</span>
+                    </div>
+                    <div>
+                        <span class="las la-arrow-circle-up"></span>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="recent-grid">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Notes</h3>
+                            <div>
+                                <button class="add" onclick="add_new()"><span>Add</span></button>
+                                <button class="eye" onclick="view()"><span>View</span></button>
+                                <button class="delete" onclick="table_edit()"><span>Edit</span></button>
+                                <button class="delete" onclick="confirm_delete()"><span>Delete</span></button>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table width="100%" id="notes_table_1">
+                                    <thead>
+                                        <tr>
+                                            <td style="width:10%">Select</td>
+                                            <td style="width:15%">Title</td>
+                                            <td>Body</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="notes_table">
+                                        {{!-- table body goes here --}}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+            
+        </main>
+    </div>
+    <div class="bg-modal" id="modal" style="display:none">
+        {{!-- Add notes --}}
+        <div class="modal-content" id="modal_add_second">
+            <div class="title">
+                <p> Add a new Note</p><a href="#" onclick="modal_close()"><span class="la la-close"></span></a>
+            </div>
+            <div class="notes-modal">
+                <label class="name">Title</label><br>
+                <input class="web_name" type="text" id="add_title" placeholder="Title of your note" style="width: 80%;margin:0;"><br>
+            </div>
+            <div class="notes-text-modal">
+                <label class="name">Body</label><br>
+                <textarea class="web_name" type="text" id="add_text" placeholder="Body" style="width: 100%;height:100%;margin-bottom:5px;margin-top:5px;resize: none;"></textarea><br>
+            </div>
+            <button class="add_rec" onclick="add_record_api()">Add Record</button>
+        </div>
+        {{!-- View notes --}}
+        <div class="modal-content" id="modal_view">
+            <div class="title">
+                <a href="#" onclick="modal_close()"><span class="la la-close"></span></a>
+            </div>
+            <p id="view_title" style="text-align: center;">View</p>
+            {{!-- <div class="notes-modal">
+                <label class="name">Title</label><br>
+                <input class="web_name" type="text" id="add_title" placeholder="Title of your note" style="width: 80%;margin:0;"><br>
+            </div> --}}
+            <div class="notes-text-modal-view">
+                {{!-- <label class="name">Body</label><br> --}}
+                <textarea class="web_name" type="text" id="view_text" placeholder="Body" style="width: 100%;height:100%;margin-top:5px;resize: none;"></textarea><br>
+            </div>
+            {{!-- <button class="add_rec" onclick="add_record_api()">Add Record</button> --}}
+        </div>
+        {{!-- Edit notes --}}
+        <div class="modal-content" id="modal_edit">
+            <div class="title">
+                <p>Edit Note</p><a href="#" onclick="modal_close()"><span class="la la-close"></span></a>
+            </div>
+            <div class="notes-modal">
+                <label class="name">Title</label><br>
+                <input class="web_name" type="text" id="edit_title" placeholder="Title of your note" style="width: 80%;margin:0;" disabled><br>
+            </div>
+            <div class="notes-text-modal">
+                <label class="name">Body</label><br>
+                <textarea class="web_name" type="text" id="edit_text" placeholder="Body" style="width: 100%;height:100%;margin-bottom:5px;margin-top:5px;resize: none;"></textarea><br>
+            </div>
+            <button class="add_rec" onclick="update_notes()">Update Record</button>
+        </div>
+
+    </div>
+    {{!-- <script src="/js/function.js"></script> --}}
+    <script>
+        function modal_close(){
+            const modal = document.getElementById("modal");
+
+            modal.style.display="none";
+        }
+        async function view(){
+            const modal = document.getElementById("modal");
+            const modal_add = document.getElementById("modal_add_second");
+            const modal_view = document.getElementById("modal_view");
+            const modal_edit = document.getElementById("modal_edit");
+            const alert = document.getElementById("alert");
+            const view_title = document.getElementById("view_title");
+            const view_text = document.getElementById("view_text");
+
+            modal_edit.style.display="none";
+
+            var count = 0;
+            var position = 1;
+            var value="";
+
+            let table = document.getElementById("notes_table");
+            let tr = table.getElementsByTagName('tr');
+
+            for(var i=0;i<tr.length;i++)
+            {
+                let td = tr[i].getElementsByTagName('td')[0];
+                let chk_box = td.getElementsByTagName('input')[0];
+                
+                if(chk_box.checked == true){
+                    count +=1;
+                    position = i;
+                    value = tr[i].getElementsByTagName('td')[1].innerHTML;
+                    
+                }
+                else{
+                    {{!-- console.log("Choose a value"); --}}
+                }
+
+            }
+            if(count==0)
+            {
+                alert.style.display="block";
+                alert.innerHTML="No value selcted";
+                setTimeout(() =>alert.style.display = "none",3000);
+            }else if(count>1){                
+                alert.style.display="block";
+                alert.innerHTML="Select only one value";
+                setTimeout(() =>alert.style.display = "none",3000);
+            }else{
+                modal.style.display = "flex";
+                modal_add.style.display = "none";
+                modal_view.style.display = "block";
+                console.log(value);
+                var title = value;
+                const data = {title};
+                const options = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                };
+                const response = await fetch('/notes/view-notes',options);
+                const json_data = await response.json();
+                if(json_data.state)
+                {
+                    view_title.innerHTML=json_data.title;
+                    view_text.disabled = false;
+                    view_text.value = json_data.body;
+                    view_text.disabled = true;
+                }
+            }
+        }
+        
+        async function table_edit(){
+            const modal = document.getElementById("modal");
+            const modal_add = document.getElementById("modal_add_second");
+            const modal_view = document.getElementById("modal_view");
+            const modal_edit = document.getElementById("modal_edit");
+            const alert = document.getElementById("alert");
+            const edit_title = document.getElementById("edit_title");
+            const edit_text = document.getElementById("edit_text");
+
+            
+
+            var count = 0;
+            var position = 1;
+            var value="";
+
+            let table = document.getElementById("notes_table");
+            let tr = table.getElementsByTagName('tr');
+
+            for(var i=0;i<tr.length;i++)
+            {
+                let td = tr[i].getElementsByTagName('td')[0];
+                let chk_box = td.getElementsByTagName('input')[0];
+                
+                if(chk_box.checked == true){
+                    count +=1;
+                    position = i;
+                    value = tr[i].getElementsByTagName('td')[1].innerHTML;
+                    
+                }
+                else{
+                    {{!-- console.log("Choose a value"); --}}
+                }
+
+            }
+            if(count==0)
+            {
+                alert.style.display="block";
+                alert.innerHTML="No value selcted";
+                setTimeout(() =>alert.style.display = "none",3000);
+            }else if(count>1){                
+                alert.style.display="block";
+                alert.innerHTML="Select only one value";
+                setTimeout(() =>alert.style.display = "none",3000);
+            }else{
+                modal_add.style.display = "none";
+                modal.style.display="flex";
+                modal_view.style.display="none";
+                modal_edit.style.display="block";
+                var title = value;
+                const data = {title};
+                const options = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                };
+                const response = await fetch('/notes/view-notes',options);
+                const json_data = await response.json();
+                console.log(json_data);
+                edit_title.disabled=false;
+                edit_title.value=json_data.title;
+                edit_title.disabled=true;
+                edit_text.value=json_data.body;
+            }
+        }
+        async function update_notes(){
+            const modal = document.getElementById("modal");
+            const modal_add = document.getElementById("modal_add_second");
+            const modal_view = document.getElementById("modal_view");
+            const modal_edit = document.getElementById("modal_edit");
+            
+            const alert_success = document.getElementById("alert_success");
+            const edit_title = document.getElementById("edit_title");
+            const edit_text = document.getElementById("edit_text");
+
+
+            var title = edit_title.value;
+            var text = edit_text.value;
+            const data = {title,text};
+                const options = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                };
+            const response = await fetch('/notes/update-notes',options);
+            const json_data = await response.json();
+            if(json_data.state){
+                alert_success.style.display="block";
+                alert_success.innerHTML=json_data.message;
+                setTimeout(() =>alert_success.style.display = "none",1000);
+                load_data();
+                modal.style.display="none";
+            }
+            
+        }
+        function add_new(){
+            const modal = document.getElementById("modal");
+            const modal_add = document.getElementById("modal_add_second");
+            const modal_view = document.getElementById("modal_view");
+            const modal_edit = document.getElementById("modal_edit");
+
+            
+            modal_add.style.display = "block";
+            modal.style.display="flex";
+            modal_view.style.display="none";
+            modal_edit.style.display="none";
+            
+        }
+        async function add_record_api(){
+            const modal = document.getElementById("modal");
+            const modal_add = document.getElementById("modal_add_second");
+            const modal_view = document.getElementById("modal_view");
+
+            const add_title = document.getElementById("add_title");
+            const add_text = document.getElementById("add_text");
+            const alert = document.getElementById("alert");
+            const alert_success = document.getElementById("alert_success");
+
+            var title = add_title.value;
+            var text = add_text.value;
+            if(add_title.value==""||add_text.value=="")
+            {
+                
+                alert.style.display="block";
+                alert.innerHTML="Fill all fields";
+                setTimeout(() =>alert.style.display = "none",1000);
+            }else{
+                const data = {title,text};
+                const options = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                };
+                const response = await fetch('/notes/add-notes',options);
+                const json_data = await response.json();
+                if(json_data.state)
+                {
+                    alert_success.style.display="block";
+                    alert_success.innerHTML=json_data.message;
+                    setTimeout(() =>alert_success.style.display = "none",1000);
+
+                    modal_add.style.display = "none";
+                    modal_view.style.display="none";
+                    modal.style.display="none";
+                    load_data();
+
+                }else{
+                    alert.style.display="block";
+                    alert.innerHTML=json_data.message;
+                    setTimeout(() =>alert.style.display = "none",1000);
+                }
+            }
+            
+        }
+        
+        function confirm_delete(){
+            const confirm_delete = document.getElementById("confirm_delete");
+            const alert = document.getElementById("alert");
+            
+
+            var count = 0;
+            var position = 1;
+            var value="";
+
+            let table = document.getElementById("notes_table");
+            let tr = table.getElementsByTagName('tr');
+
+            for(var i=0;i<tr.length;i++)
+            {
+                let td = tr[i].getElementsByTagName('td')[0];
+                let chk_box = td.getElementsByTagName('input')[0];
+                
+                if(chk_box.checked == true){
+                    count +=1;
+                    position = i;
+                    value = tr[i].getElementsByTagName('td')[1].innerHTML;
+                    
+                }
+                else{
+                    {{!-- console.log("Choose a value"); --}}
+                }
+
+            }
+            if(count==0)
+            {
+                alert.style.display="block";
+                alert.innerHTML="No value selcted";
+                setTimeout(() =>alert.style.display = "none",3000);
+            }else if(count>1){                
+                alert.style.display="block";
+                alert.innerHTML="Select only one value";
+                setTimeout(() =>alert.style.display = "none",3000);
+            }else{
+                alert.style.display = "none";
+                confirm_delete.style.display="block";
+                console.log(value);
+            }
+        }
+
+        async function confirm_delete_yes(){
+            const confirm_delete = document.getElementById("confirm_delete");
+            var title = "";
+
+            var count = 0;
+            var position = 1;
+
+            let table = document.getElementById("notes_table");
+            let tr = table.getElementsByTagName('tr');
+
+            for(var i=0;i<tr.length;i++)
+            {
+                let td = tr[i].getElementsByTagName('td')[0];
+                let chk_box = td.getElementsByTagName('input')[0];
+                
+                if(chk_box.checked == true){
+                    count +=1;
+                    position = i;
+                    
+                }
+                else{
+                    {{!-- console.log("Choose a value"); --}}
+                }
+
+            }
+
+            title=tr[position].getElementsByTagName('td')[1].innerHTML;
+            const data = {title};
+                const options = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                };
+                const response = await fetch('/notes/delete-notes',options);
+                const json_data = await response.json();
+
+                if(json_data.state)
+                {
+                    console.log(json_data.message);
+                    load_data();
+                    confirm_delete.style.display="none";
+                }
+        }
+        async function confirm_delete_no(){
+            const confirm_delete = document.getElementById("confirm_delete");
+            confirm_delete.style.display="none";
+        }
+        async function load_data(){
+            const user_name = document.getElementById("user_name");
+            const picture = document.getElementById("profile_picture");
+            const notes_table = document.getElementById("notes_table");
+            const notes_count = document.getElementById("notes_count");
+            const notes_byte = document.getElementById("notes_byte");
+            var data_html ="";
+            var count = 0;
+            var length = 0;
+
+            const options = {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'GET'
+
+            };
+        
+            const response = await fetch('/notes/load-data-notes',options);
+            const json_data = await response.json();
+            
+            user_name.innerHTML=json_data.user.firstname+" "+json_data.user.lastname;
+            picture.src=`/uploads/${json_data.user.image}`;
+
+            var notes_data = json_data.notes;
+
+            for(var i=0;i<notes_data.length;i++)
+            {
+                count+=1;
+                length+=notes_data[i].body.length;
+                var text_body = "";
+                if(notes_data[i].body.length>75)
+                {
+                    text_body = notes_data[i].body.substring(0,75)+" . . . . . . .";
+                }else{
+                    text_body=notes_data[i].body
+                }
+                data_html += `<tr><td><input type="checkbox"></td><td>${notes_data[i].title}</td><td>${text_body}</td></tr>`;
+            };
+            notes_count.innerHTML = count;
+            notes_byte.innerHTML = length;
+            notes_table.innerHTML = data_html;
+        }
+        async function logout(){
+            const options = {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'GET'
+
+            };
+        
+            const response = await fetch('/logout',options);
+            const json_data = response.json();
+            if(json_data.state)
+            {
+                console.log("Logged out");
+            }
+        }
+        function search_function(){
+            let alert_search = document.getElementById("alert_search");
+            let filter =  document.getElementById("myInput").value.toUpperCase();
+            let table = document.getElementById("notes_table");
+            let tr = table.getElementsByTagName('tr');
+            
+            for(var i=0; i<tr.length; i++)
+            {
+                let td = tr[i].getElementsByTagName('td')[1];
+                if(td){
+                    let textvalue = td.textContent || td.innerHTML;
+                    
+                    if(textvalue.toUpperCase().indexOf(filter) > -1){
+                    tr[i].style.display = "";
+
+                    }else{
+                    tr[i].style.display = "none";
+
+                    }
+                }
+            }
+            var count=0;
+            for(var i=0; i<tr.length; i++)
+            {
+            if(tr[i].style.display=="none")
+            {
+            count+=1;
+            }
+            }
+            if(count==tr.length)
+            {
+            alert_search.style.display = "block";
+            alert_search.innerHTML="No result";
+            }
+            else{
+            alert_search.style.display = "none";
+            }
+
+        }
+    </script>
+</body>
+</html>
