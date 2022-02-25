@@ -12,6 +12,9 @@ Here are some of the screenshots of the working application:<br>
 ![Signup-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/signup.png)<br>
 ![Login-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/login.png)<br>
 ![Dashboard screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/password.png)<br>
+
+A demo video of the working of the project:
+[![Watch the video](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/home.png)](https://youtu.be/vt5fpE0bzSY)
  
 
 
