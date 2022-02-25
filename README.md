@@ -14,7 +14,7 @@ Here are some of the screenshots of the working application:<br>
 ![Dashboard screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/password.png)<br>
 
 A demo video of the working of the project:
-[![Watch the video](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/home.png)](https://drive.google.com/file/d/1Kr_6usCvj0DLlyDBIb7SA91pbqvKZv-x/view?usp=sharing)
+https://drive.google.com/file/d/1Kr_6usCvj0DLlyDBIb7SA91pbqvKZv-x/view?usp=sharing
  
 
 
