@@ -4,6 +4,7 @@ const fileUpload = require('express-fileupload');
 const cookieParser =require('cookie-parser');
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
+const { DATETIME, TIMESTAMP } = require('mysql/lib/protocol/constants/types');
 dotenv.config({path: './.env'});
 
 const app = express();
@@ -32,7 +33,7 @@ app.use('/auth', require('./routes/auth'));
 app.use('/password',require('./routes/password'));
 app.use('/notes',require('./routes/notes'));
 app.use('/account',require('./routes/account'));
-
+console.log(TIMESTAMP.toString());
 
 
 module.exports = app;

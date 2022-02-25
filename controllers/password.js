@@ -80,7 +80,7 @@ exports.view_password = (req,res) => {
             
             res.json({
                 state:false,
-                message:"Wrong password"
+                message:"Incorrect password"
             });
         };
         

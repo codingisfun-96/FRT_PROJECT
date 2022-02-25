@@ -521,18 +521,18 @@ transform: none;
   left: 39%;
 }
 .alertmsg-error-log{
-  width:30%;
+  z-index: 5;
+  width:50%;
   text-align: center;
   text-decoration: none;
   color: rgb(255, 255, 255);
-  background-color: lightgreen;
   border-radius: 10px;
-  height: 30px;
-  margin: 0 0 0 45px;
+  height: 20px;
+  margin: 65px 0 0 120px;
   border: #ffffff;
   border-radius: 10px;
-  padding-top: 10px;
-  position: fixed;
+  padding-top: 5px;
+  position:absolute;
   color: white;
   top: 10px;
   /* left: 30%; */

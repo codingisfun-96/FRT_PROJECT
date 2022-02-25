@@ -92,7 +92,7 @@ exports.signup = async(req,res) => {
     }
     var file = req.files.propic;
     var img_name= Date.now()+file.name;
-    if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" ){                     
+    if(file.mimetype == "image/jpeg" ||file.mimetype == "image/png"||file.mimetype == "image/gif" || file.mimetype == "image/jpg" ){                     
         file.mv('public/uploads/'+Date.now()+file.name, function(err) {              
             if (err){
                 return res.status(500).send(err);
@@ -146,82 +146,3 @@ exports.signup = async(req,res) => {
     }
 }
 
-//////////Forgot Password API//////////////
-
-// exports.forgotpassword = (req,res) =>{
-//     const{email} = req.body;
-//     var form = {email: req.body.email};
-//     if(!email){
-//         return res.status(400).render('forgot-pass',{ 
-//             message: "Please fill all fields!",
-//             error:true,
-//             form: form,
-//         });
-//     }
-//     db.query('SELECT email from users WHERE email = ?', [email],async(error,results)=>{
-//         if(results.length > 0){
-//             db.query('SELECT * from users WHERE email = ?', [email],async(error,rows)=>{
-//             const secret = process.env.JWT_SECRET + rows[0].password;
-//             const id = rows[0].userid;
-//             const token = jwt.sign({id}, secret, {expiresIn: process.env.JWT_LINK_EXPIRES_IN});
-//             const link = `http://localhost:3000/auth/reset-password/${id}/${token}`
-//             console.log(link);
-//             res.status(200).render('forgot-pass',{
-//                 message: 'Reset link has been sent to your e-mail successfully! This link will be valid only for 20 minutes',
-//                 success: true
-//             })
-//         })
-//         }else{
-//             res.status(400).render('forgot-pass',{
-//                 message: 'Email does not exist. Please Signup!',
-//                 error: true,
-//                 form: form
-//             })
-//         }
-//     })
-// }  
-
-// //////////Password Reset GET API//////////////
-// exports.loadresetpassword = (req,res) =>{
-//     const {id,token} = req.params;
-//     db.query('SELECT email from users WHERE userid = ?', [id],async(error,results)=>{
-//         if(results.length > 0){
-//             db.query('SELECT * from users WHERE userid = ?', [id],async(error,rows)=>{
-//             const secret = process.env.JWT_SECRET + rows[0].password;
-//             try{
-//             const payload = jwt.verify(token, secret);
-//             return res.status(200).render('reset-password',{
-//                 rows:rows,
-//                 })
-//             }catch(error){
-//                 return res.status(400).render('reset-password',{
-//                     message: 'Invalid token',
-//                     error:true
-//                 })
-//             } 
-//         })
-//         }else{
-//             return res.status(400).render('reset-password',{
-//                 message: 'Invalid ID',
-//                 error:true
-//             })
-//         }
-//     })
-// }
-
-// //////////Password Reset POST API//////////////
-// exports.resetpassword = (req,res) =>{
-//     const {id,token} = req.params;
-//     db.query('SELECT email from users WHERE userid = ?', [id],async(error,results)=>{
-//         if(results.length > 0){
-//             db.query('SELECT * from users WHERE userid = ?', [id],async(error,rows)=>{
-//             return res.status(200).render('reset-password')
-//             })
-//         }else{
-//             return res.status(400).render('reset-password',{
-//                 message: 'Invalid ID',
-//                 error:true
-//             })
-//         }
-//     })
-// }
