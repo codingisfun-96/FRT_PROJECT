@@ -8,11 +8,6 @@ const { DATETIME, TIMESTAMP } = require('mysql/lib/protocol/constants/types');
 dotenv.config({path: './.env'});
 
 const app = express();
-// const sslServer= https.createServer(
-//     {
-//             key: fs.readFileSync(etc/letsencrypt/live/),
-//             cert: fs.readFileSync(etc/letsencrypt/live/)
-//     },app)
     
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended: false}));
