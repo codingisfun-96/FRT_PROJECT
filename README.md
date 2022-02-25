@@ -8,6 +8,7 @@ An encryption algorithm is used to keep the user login credentials for different
 
 Here are some of the screenshots of the working application:<br>
 ![Homepage screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/home.png)<br>
+![About-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/about.png)<br>
 ![Signup-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/signup.png)<br>
 ![Login-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/login.png)<br>
 ![Dashboard screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/password.png)<br>
