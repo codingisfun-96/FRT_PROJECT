@@ -6,8 +6,8 @@ The signup details are stored in a database table where the First name and Last 
 As additional feature users are also allowed to upload their notes in text format. 
 An encryption algorithm is used to keep the user login credentials for different websites safe and secure.
 
-Here are some of the screenshots of the working application:<br>
-![Homepage screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/home.png)<br>
+<h2>Here are some of the screenshots of the working application:</h2><br>
+Home page![Homepage screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/home.png)<br>
 ![Signup-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/signup.png)<br>
 ![Login-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/login.png)<br>
 ![Dashboard screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/password.png)<br>
