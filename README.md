@@ -6,6 +6,11 @@ The signup details are stored in a database table where the First name and Last 
 As additional feature users are also allowed to upload their notes in text format. 
 An encryption algorithm is used to keep the user login credentials for different websites safe and secure.
 
+Here are some of the screenshots of the workig application:
+![Homepage screenshot](https://github.com/codingisfun-96/FRT_PROJECT/tree/main/Screenshots/home.png)
+![Signup-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/tree/main/Screenshots/signup.png)
+![Login-page screenshot](https://github.com/codingisfun-96/Weather-application/blob/main/image/login.png)
+![Dashboard screenshot](https://github.com/codingisfun-96/Weather-application/blob/main/image/password.png)
 
 
 
