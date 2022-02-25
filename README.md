@@ -7,15 +7,11 @@ As additional feature users are also allowed to upload their notes in text forma
 An encryption algorithm is used to keep the user login credentials for different websites safe and secure.
 
 Here are some of the screenshots of the working application:<br>
-<p align="center">
-<!--   <img src="your_relative_path_here" width="350" title="hover text"> -->
-  <img src="https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/home.png" alt="accessibility text">
-</p>
-<!-- ![Homepage screenshot](https://github.com/codingisfun-96/FRT_PROJECT/tree/main/Screenshots/home.png) -->
-<!-- ![Signup-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/tree/main/Screenshots/signup.png)
-![Login-page screenshot](https://github.com/codingisfun-96/Weather-application/blob/main/image/login.png)
-![Dashboard screenshot](https://github.com/codingisfun-96/Weather-application/blob/main/image/password.png)
- -->
+![Homepage screenshot](https://github.com/codingisfun-96/FRT_PROJECT/tree/main/Screenshots/home.png)
+[Signup-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/tree/main/Screenshots/signup.png)
+![Login-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/tree/main/Screenshots/login.png)
+![Dashboard screenshot](https://github.com/codingisfun-96/FRT_PROJECT/tree/main/Screenshots/password.png)
+ 
 
 
 
