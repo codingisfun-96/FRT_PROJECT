@@ -9,7 +9,7 @@ An encryption algorithm is used to keep the user login credentials for different
 Here are some of the screenshots of the workig application:<br>
 <p align="center">
 <!--   <img src="your_relative_path_here" width="350" title="hover text"> -->
-  <img src="https://github.com/codingisfun-96/FRT_PROJECT/tree/main/Screenshots/home.png" width="350" alt="accessibility text">
+  <img src="https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/home.png" width="350" alt="accessibility text">
 </p>
 <!-- ![Homepage screenshot](https://github.com/codingisfun-96/FRT_PROJECT/tree/main/Screenshots/home.png) -->
 <!-- ![Signup-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/tree/main/Screenshots/signup.png)
