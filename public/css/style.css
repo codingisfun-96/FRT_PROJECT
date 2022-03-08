@@ -200,8 +200,7 @@ padding-top: 20px;
 #signup.valid .email-box:before{
   position: absolute;
   content: '';
-  left: 920px;
-  top: 545px;
+  left: 95%;
   width: 18px;
   height: 18px;
   background: url(/images/valid.png); 
