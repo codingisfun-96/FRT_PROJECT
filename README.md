@@ -7,12 +7,19 @@ As additional feature users are also allowed to upload their notes in text forma
 An encryption algorithm is used to keep the user login credentials for different websites safe and secure.
 
 Here are some of the screenshots of the working application:<br>
+Homepage:
 ![Homepage screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/home.png)<br>
+About-page:
 ![About-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/about.png)<br>
+Signup-page:
 ![Signup-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/signup.png)<br>
+Login-page:
 ![Login-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/login.png)<br>
+Account-page:
 ![Account-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/account.png)<br>
+Password-dashboard:
 ![Password-dash screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/password.png)<br>
+Notes-dashboard:
 ![Notes-dash screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/notes.png)<br>
 
 
