@@ -5,6 +5,7 @@ A signup form is provided for the users to enter their First name, Last name, Pa
 The signup details are stored in a database table where the First name and Last name are stored in plaintext, the password is stored in hashed format and the profile picture is stored inside the directory of the website public folder whose path is stored in the database for future retrieval. 
 As additional feature users are also allowed to upload their notes in text format. 
 An encryption algorithm is used to keep the user login credentials for different websites safe and secure.
+This project is hosted on azure virtual machine(Ubuntu-server) using putty tool for connecting to the machine via ssh.
 
 -------Here are some of the screenshots of the working application-------<br><br>
 Homepage:
@@ -21,6 +22,9 @@ Password-dashboard:
 ![Password-dash screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/password.png)<br>
 Notes-dashboard:
 ![Notes-dash screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/notes.png)<br>
+
+You can view the working project here:<br>
+https://cloudnest.centralindia.cloudapp.azure.com
 
 
 Here's the url of the video with the working of the project:<br>
