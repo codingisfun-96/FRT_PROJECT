@@ -24,7 +24,7 @@ Notes-dashboard:
 ![Notes-dash screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/notes.png)<br>
 
 You can view the working project here:<br>
-https://cloudnest.centralindia.cloudapp.azure.com
+http://cloudnest.centralindia.cloudapp.azure.com
 
 
 Here's the url of the video with the working of the project:<br>
