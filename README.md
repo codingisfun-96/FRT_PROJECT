@@ -11,7 +11,10 @@ Here are some of the screenshots of the working application:<br>
 ![About-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/about.png)<br>
 ![Signup-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/signup.png)<br>
 ![Login-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/login.png)<br>
-![Dashboard screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/password.png)<br>
+![Account-page screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/account.png)<br>
+![Password-dash screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/password.png)<br>
+![Notes-dash screenshot](https://github.com/codingisfun-96/FRT_PROJECT/blob/main/Screenshots/notes.png)<br>
+
 
 Here's the url of the video with the working of the project:<br>
 https://drive.google.com/file/d/1Kr_6usCvj0DLlyDBIb7SA91pbqvKZv-x/view?usp=sharing
